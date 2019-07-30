@@ -1,3 +1,17 @@
+/*We can use binary search in the function . We first of all sort the stalls.
+Then we always keep cow 1 in stall 1 and then proceed by finding the lower_bound in array of stalls for last_stall+dist.
+
+If the lower_bound doesn't point to the end then we can accomodate one more cow.And
+then check how many cows can we accomodate with minimum distance dist and 
+if it's greater than or equal to the cows present c then it would return true but if noot return false
+
+
+In step 1- we place 1st cow in stall 1 and last cow in stall n(last stall). then to put one more cow ,
+find the middle positiion as this will be farthest from the two other cows.
+now check if we keep distance of x(middle) between the cows, is it possible to accomodate all the cows?
+if yes then this is the final answer else we further divide middle position( similar divide and conquer concept) and continue 
+the steps...
+*/
 #include <bits/stdc++.h>
 #include<iostream>
 #include<vector>

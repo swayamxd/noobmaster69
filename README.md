@@ -1,2 +1,2 @@
 # noobmaster69
-solutions and hints for coding challenges faced by noobmasters 
+Solutions and hints for coding challenges faced by noobmasters 

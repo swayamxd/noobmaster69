@@ -1,0 +1,28 @@
+Find and display all pairs of 5-digit numbers that collectively use the digits 0 through 9 
+once each,such that the first number when divided by the second number is equal to integer
+N, where 2<=N<=79.
+
+Input:
+N(2<=N<=79)
+
+Output:
+Pair of 5 digit numbers a and b in which no digits are repeated such that a/b=N
+
+sample input:
+N=62
+output:
+79546 01283
+94736 01528
+Note that no digits are repeated in any number.Suppose,If the first number contains digit 9
+then it should not be present in the second number.
+
+Approach:
+
+the format is a/b=N
+Quick analysis shows that the number b can range from 01234 to 98765.
+An even better bound for b is the range from 01234 to 98765/N
+For each b, we can find a=b*N
+Now we have to check that a and b together contains all the 10 digits(0 to 9)
+Iterative Complete search approach with two nested loops is done.
+
+ 

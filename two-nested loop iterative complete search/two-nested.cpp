@@ -8,10 +8,10 @@ int main(){
 		used=(fghij<10000);//used is a flag variable which stores 0 and 1 and has special purpose which will be discussed later in the code
 	
 		
-	//check if abcde and fghij contains all the digits from 0 to 9
-	/*
+	/*check if abcde and fghij contains all the digits from 0 to 9
+	
 	    used variable in initialized with  _ _ _ _ _ _ _ _ _ 0 if fghij is 4 digit number i.e the first digit of fghij contains 0
-	    					else with  _ _ _ _ _ _ _ _ _ 1 if fghij is 5 digit number(the blanks contains zeroes actually) */
+	    			        else with  _ _ _ _ _ _ _ _ _ 1 if fghij is 5 digit number(the blanks contains zeroes actually) */
 		tmp=fghij;
 		while(tmp)
 		{
@@ -32,7 +32,8 @@ int main(){
 				previously used = 1001010101
 				now after 2nd while loop
 				used=1111111111.
-				Now if used contains all 10 ones it means the two numbers abcde and fghij contains all digits from 0 to 9 without repeatations  */
+				Now if used contains all 10 ones it means the two numbers abcde and fghij contains all digits
+				from 0 to 9 without repeatations  */
 		if(used==(1<<10)-1)//cheks if used is equl to 1111111111. if yes the prints the numbers
 		 cout<<abcde<<" "<<fghij<<"\n";
 	}

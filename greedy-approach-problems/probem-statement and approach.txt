@@ -1,0 +1,99 @@
+The International Space Station contains many centrifuges in its labs. Each centrifuge will have some
+number (C) of chambers each of which can contain 0, 1, or 2 specimens. You are to write a program
+which assigns all S specimens to the chambers such that no chamber contains more than 2 specimens
+and the following expression for IMBALANCE is minimized.
+
+IMBALANCE =
+?
+C
+i=1
+| CMi - AM |
+
+where:
+CMi
+is the Chamber Mass of chamber i and is computed by summing the masses of the specimens
+assigned to chamber i.
+AM is the Average Mass of the chambers and is computed by dividing the sum of the masses of all
+specimens by the number of chambers (C).
+Input
+Input to this program will be a file with multiple sets of input. The first line of each set will contain
+two numbers. The first number (1 = C = 5) defines the number of chambers in the centrifuge and the
+second number (1 = S = 2C) defines the number of specimens in the input set. The second line of
+input will contain S integers representing the masses of the specimens in the set. Each specimen mass
+will be between 1 and 1000 and will be delimited by the beginning or end of the line and/or one or
+more blanks.
+Output
+For each input set, you are to print a line specifying the set number (starting with 1) in the format
+‘Set #X’ where X is the set number.
+The next C lines will contain the chamber number in column 1, a colon in column number 2, and
+then the masses of the specimens your program has assigned to that chamber starting in column 4.
+The masses in your output should be separated by exactly one blank.
+Your program should then print ‘IMBALANCE = X’ on a line by itself where X is the computed
+imbalance of your specimen assignments printed to 5 digits of precision to the right of the decimal.
+The final line of output for each set should be a blank line. (Follow the sample output format.)
+Sample Input
+2 3
+6 3 8
+3 5
+51 19 27 14 33
+5 9
+1 2 3 5 7 11 13 17 19
+
+
+Sample Output
+Set #1
+0: 6 3
+1: 8
+IMBALANCE = 1.00000
+Set #2
+0: 51
+1: 19 27
+2: 14 33
+IMBALANCE = 6.00000
+Set #3
+0: 1 17
+1: 2 13
+2: 3 11
+3: 5 7
+4: 19
+IMBALANCE = 11.60000
+
+
+Approach:
+
+Given 1 = C = 5 chambers which can store 0, 1, or 2 specimens, 1 = S = 2C specimens
+and a list M of the masses of the S specimens, determine which chamber should store each
+specimen in order to minimize ‘imbalance’.
+
+A=(S
+j=1 Mj )/C, i.e. A is the average of the total mass in each of the C chambers.
+Imbalance = C
+
+i=1 |Xi - A|, i.e. the sum of differences between the total mass in each
+
+chamber w.r.t. A where Xi is the total mass of specimens in chamber i.
+
+
+
+This problem can be solved using a greedy algorithm, but to arrive at that solution, we have
+to make several observations.
+
+
+Observation 1: If there exists an empty chamber, it is usually beneficial and never worse to
+move one specimen from a chamber with two specimens to the empty chamber! Otherwise,
+the empty chamber contributes more to the imbalance as shown in Figure 3.5, top.
+Observation 2: If S>C, then S - C specimens must be paired with a chamber already
+containing other specimens—the Pigeonhole principle! See Figure 3.5, bottom.
+The key insight is that the solution to this problem can be simplified with sorting:
+if S < 2C, add 2C - S dummy specimens with mass 0. For example, C = 3, S = 4,
+M = {5, 1, 2, 7} ? C = 3, S = 6, M = {5, 1, 2, 7, 0, 0}. Then, sort the specimens on their
+mass such that M1 = M2 = ... = M2C-1 = M2C. In this example, M = {5, 1, 2, 7, 0, 0} ?
+{0, 0, 1, 2, 5, 7}. By adding dummy specimens and then sorting them, a greedy strategy
+becomes ‘apparent’:
+• Pair the specimens with masses M1&M2C and put them in chamber 1, then
+• Pair the specimens with masses M2&M2C-1 and put them in chamber 2, and so on ...
+This greedy algorithm—known as load balancing—works! See Figure 3.6.
+It is hard to impart the techniques used in deriving this greedy solution. Finding greedy
+solutions is an art, just as finding good Complete Search solutions requires creativity. A tip
+that arises from this example: If there is no obvious greedy strategy, try sorting the data or
+introducing some tweak and see if a greedy strategy emerges.

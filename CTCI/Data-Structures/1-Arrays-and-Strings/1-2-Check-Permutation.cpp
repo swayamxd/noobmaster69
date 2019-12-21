@@ -50,6 +50,7 @@ bool checkPermutation(string a, string b){
 
 int main(){
     string a,b;
+    cout << "Enter two strings:\n";
     cin >> a >> b;
     if (checkPermutation(a,b)){
         cout << "Permutation detected" << endl;

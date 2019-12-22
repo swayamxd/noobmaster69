@@ -91,7 +91,7 @@ Hints:
 ```
 
 ### 1.9 String Rotation:
-#### Assume you have a method isSubst ring which checks if one word is a substring of another. Given two strings, 51 and 52, write code to check if 52 is a rotation of 51 using only one call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat").
+#### Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (e.g., "waterbottle" is a rotation of"erbottlewat").
 Hints:
 ```
 #34: If a string is a rotation of another, then it's a rotation at a particular point. For example, a rotation of water bottle at character 3 means cutting waterbottle at character 3 and putting the right half (erbottle) before the left half (wat).

@@ -2,6 +2,7 @@
 #include<vector>
 using namespace std;
 
+// O(n^2) solution brute force
 bool rotate(vector<vector<int>>&a){
     if(a.size()!=(a[0].size())) return false;
     // the temporary variable that holds top most swap value

@@ -8,6 +8,37 @@ struct Node{
     Node* next;
 };
 
+void display(Node* head){
+    while(head->next!=NULL){
+        cout << head << " -> " << head->data << " | ";
+        head = head->next;
+    }
+    cout << endl;
+    return;
+}
+
+/*
+// O(n^2) solution with using no buffer
+void removeDuplicates(Node* head){
+    Node *curr=head, *after=NULL, *dup=NULL;
+    while (curr!=NULL){
+        after = curr->next;
+        while (after!=NULL){
+            if (curr->data == after->data){
+                dup = after;
+                curr->next = after->next;
+                after = after->next;
+                delete(dup);
+            } else {
+                after = after->next;
+            }
+        }
+        curr = curr->next;
+    }
+    return;
+}
+*/
+
 // O(n) solution using unordered_set
 void removeDuplicates(Node* head){
     Node *curr=head, *prev=NULL, *dup;
@@ -24,15 +55,6 @@ void removeDuplicates(Node* head){
             curr = curr->next;
         }
     }
-    return;
-}
-
-void display(Node* head){
-    while(head->next!=NULL){
-        cout << head << " -> " << head->data << " | ";
-        head = head->next;
-    }
-    cout << endl;
     return;
 }
 

@@ -6,6 +6,13 @@ struct Node{
     Node* next;
 };
 
+class nodeWithCarry{
+    public:
+    int carry;
+    Node* node;
+};
+
+// finds length of a linked list
 int findLength(Node* a){
     int n=0;
     while(a){
@@ -31,70 +38,48 @@ void display(Node*head){
 Node* insertAtHead(Node* head, int data){
     Node *temp = new Node();
     temp->data = data;
-    if (head) {
-        temp->next = head;
-    } else {
-        temp->next = NULL;
-    }
+    temp->next = head;
     head = temp;
+    // display(temp);
     return head;
+}
+
+// recursive call to perform add from the last element
+nodeWithCarry* makeSum(Node*a, Node*b){
+    nodeWithCarry *curr = new nodeWithCarry();
+    nodeWithCarry *old = new nodeWithCarry();
+    if(a->next && b->next){
+        old = makeSum(a->next, b->next);
+    }
+    int sum = (a->data + b->data + old->carry)%10;
+    curr->node = insertAtHead(old->node,sum);
+    curr->carry = (a->data + b->data + old->carry)/10;
+    return curr;
 }
 
 // O(n) solution by putting result in another linked list simlutaneously
 Node* sumList (Node *aHead, Node *bHead){
-    int carry=0, lengthDifference;
-    // if difference is negative, then b is larger else vice versa
-    lengthDifference = findLength(aHead)-findLength(bHead);
-    Node *temp, *result=NULL, *prev=NULL;
-    Node *a = aHead;
-    Node *b = bHead;
-
-    // while actually adding a and b
-    while(a && b){
-        temp = new Node();
-        // if result is empty, replace result with temp
-        if(!result) {
-            result = temp;
-            prev = temp;
+    Node *result=NULL;
+    // we neeed to add padding to smaller list to make their length same
+    int lengthDifference = findLength(aHead) - findLength(bHead);
+    // if a has more element than b
+    if (lengthDifference > 0){
+        while (lengthDifference!=0){
+            bHead = insertAtHead(bHead,0);
+            lengthDifference--;
         }
-        temp->data = (carry + a->data + b->data)%10;
-        carry = (a->data + b->data)/10;
-        temp->next = NULL;
-        if (result) {
-            prev->next = temp;
-            prev = prev->next;
+    }
+    // if b has more element than a
+    else if (lengthDifference < 0){
+        while (lengthDifference!=0){
+            aHead = insertAtHead(aHead,0);
+            lengthDifference++;
         }
-        a = a->next;
-        b = b->next;
     }
-    // copying remaining a with carry
-    while (a){
-        temp = new Node();
-        temp->data = a->data + carry;
-        carry = 0;
-        temp->next = NULL;
-        prev->next = temp;
-        prev = prev->next;
-        a = a->next;
-    }
-    // copying remaining b with carry
-    while (b){
-        temp = new Node();
-        temp->data = b->data + carry;
-        carry = 0;
-        temp->next = NULL;
-        prev->next = temp;
-        prev = prev->next;
-        b = b->next;
-    }
-    // copying remaining carry
-    if (carry){
-        temp = new Node();
-        temp->data = carry;
-        temp->next = NULL;
-        prev->next = temp;
-    }
-    return result;
+    nodeWithCarry* temp = makeSum(aHead,bHead);
+    // checking if we have any left over carry
+    if (temp->carry) temp->node = insertAtHead(temp->node,temp->carry);
+    return temp->node;
 }
 
 int main(){
@@ -105,7 +90,7 @@ int main(){
         temp->next = aHead;
         aHead = temp;
     }
-    for (int i=4;i<9;i++){
+    for (int i=4;i<8;i++){
         temp = new Node();
         temp->data = i;
         temp->next = bHead;

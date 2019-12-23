@@ -29,6 +29,7 @@ int KthtoLast(Node* head, int k){
 }
 
 int main(){
+    // which index element to return from last
     int k=3;
     Node *head = NULL, *temp = NULL;
     for(int i=10;i<20;i++){

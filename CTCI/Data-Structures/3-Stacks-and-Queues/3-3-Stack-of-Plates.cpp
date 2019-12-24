@@ -6,7 +6,6 @@ using namespace std;
 
 class autoExtendStack{
     int stackSize;
-    int stackCount;
     public:
     // declare a vector of stacks
     vector<stack<int>> stackVector;
@@ -14,12 +13,10 @@ class autoExtendStack{
     stack<int> currentStack;
     autoExtendStack(int size){
         stackSize = size;
-        stackCount = 0;
     }
     void push(int value){
         if(currentStack.size()==stackSize) {
             stackVector.push_back(currentStack);
-            stackCount++;
             while(!currentStack.empty()){
                 currentStack.pop();
             }
@@ -31,7 +28,6 @@ class autoExtendStack{
             if (stackVector.empty()) return;
             currentStack = stackVector.back();
             stackVector.pop_back();
-            stackCount--;
         }
         currentStack.pop();
         return;
@@ -41,19 +37,18 @@ class autoExtendStack{
             if (stackVector.empty()) return -1;
             currentStack = stackVector.back();
             stackVector.pop_back();
-            stackCount--;
         }
         return currentStack.top();
     }
     void pop(int stackNum){
-        if (stackNum<=stackCount){
+        if (stackNum<=stackVector.size()){
             if (stackVector[stackNum].empty()){
                 (stackNum==0)?stackNum++:stackNum--;
             }
             cout << "Popping from stack "<< stackNum << " : " << stackVector[stackNum].top() << endl;
             stackVector[stackNum].pop();
         }
-        else if(stackNum==stackCount+1){
+        else if(stackNum==stackVector.size()+1){
             if(currentStack.empty()){
                 pop(--stackNum);
                 return;

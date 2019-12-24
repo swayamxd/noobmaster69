@@ -3,7 +3,7 @@
 #include<stack>
 using namespace std;
 
-class minStack : stack<int>{
+class minStack{
     private:
     stack<int> superStack;
     stack<int> minStack;

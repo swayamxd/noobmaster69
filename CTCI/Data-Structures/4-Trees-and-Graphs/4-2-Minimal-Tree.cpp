@@ -23,13 +23,6 @@ void display(BST* root){
 // top down approach could have taken O(n*log(n)) solution
 BST* bstFy(vector<int>nodeList,int low,int high){
     if(high<low) return NULL;
-    if(high==low) {
-        BST* leafNode = new BST();
-        leafNode->data = nodeList[high];
-        leafNode->left=NULL;
-        leafNode->right=NULL;
-        return leafNode;
-    }
     int mid = (low+high)/2;
     BST *rootNode = new BST();
     rootNode->data = nodeList[mid];

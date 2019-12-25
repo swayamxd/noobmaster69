@@ -1,4 +1,5 @@
 #include<iostream>
+#include<stdlib.h>
 #include<limits.h>
 #include<vector>
 using namespace std;
@@ -21,7 +22,8 @@ void display(binaryTree* root){
 binaryTree* generateBinaryTree(int depth){
     if(depth<=0) return NULL;
     binaryTree* root = new binaryTree();
-    root->data = depth;
+    // root->data = depth;
+    root->data = rand()%100;
     root->left = generateBinaryTree(depth-1);
     root->right = generateBinaryTree(depth-1);
     return root;
@@ -30,14 +32,15 @@ binaryTree* generateBinaryTree(int depth){
 // O(n) solution using O(1) space
 // logic is, inorder traversal would spit increasing order sorted elements
 // prev <= curr < next
-int checkBST(binaryTree* root){
-    if (!root) return -1;
-    int leftNode, rightNode;
-    leftNode = checkBST(root->left);
-    if (leftNode==INT_MIN || root->data>leftNode) return INT_MIN;
-    rightNode = checkBST(root->right);
-    if (rightNode==INT_MIN || root->data<=rightNode) return INT_MIN;
-    return 0;
+bool checkBST(binaryTree* root, int min, int max){
+    if(!root) return true;
+    if(max<=root->data || min>root->data) return false;
+    if (!checkBST(root->left,min,root->data) || !checkBST(root->right,root->data,max)) return false;
+    return true;
+}
+
+bool checkBST(binaryTree* root){
+    return checkBST(root, INT_MIN, INT_MAX);
 }
 
 int main(){
@@ -45,6 +48,6 @@ int main(){
     binaryTree* tree = generateBinaryTree(depth);
     display(tree);
     cout << endl;
-    (checkBST(tree)==INT_MIN) ? cout << "Not BST" << endl : cout << "BST" << endl;
+    (checkBST(tree)) ? cout << "BST" << endl : cout << "Not BST" << endl;
     return 0;
 }

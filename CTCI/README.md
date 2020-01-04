@@ -1,8 +1,8 @@
 # Cracking the Coding Interview
 
-## [Book Link](Cracking_the_Coding_Interview.pdf)
+## [Book Link](Cracking_the_Coding_Interview_6th_Edition.pdf)
 
-### Tough Problems
+### Unsolved Problems
 #### 4-Trees-and-Graphs:
     -4.6
     -4.7

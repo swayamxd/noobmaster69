@@ -24,8 +24,8 @@ public class isUnique
         for(int i=0;i<l;i++)
         {
             char c=s.charAt(i);
-            if(hash[((int)c)%32]=='`')
-                hash[((int)c)%32]=c;
+            if(hash[((int)c)-32]=='`')
+                hash[((int)c)-32]=c;
             else
                 {
                  f=0;

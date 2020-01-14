@@ -34,20 +34,19 @@ void randomize (vector<vector<bool>> &grid, int row, int column) {
     }
 }
 
-vector<char> findWay (vector<vector<bool>> &grid, int row, int column, vector<char> &way){
-    if(row>=grid.size())
+vector<char> findWay (vector<vector<bool>> &grid){
+    vector<char> way;
+    if(grid.size()!=0)
+        // findWay(grid,0,0,way);
     return way;
 }
 
 int main(){
     int row = 10;
     int column = 20;
-    int startingRow = 0;
-    int startingColumn = 0;
     vector<vector<bool>> grid (row, vector<bool> (column, true));
-    vector<char> way;
     randomize(grid,row,column);
     display2D(grid);
-    display1D(findWay(grid,startingRow,startingColumn,way));
+    // display1D(findWay(grid));
     return 0;
 }

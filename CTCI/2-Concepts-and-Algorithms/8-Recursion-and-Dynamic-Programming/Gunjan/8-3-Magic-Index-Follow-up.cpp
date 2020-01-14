@@ -15,12 +15,14 @@ void generateList(int *arr, int arraySize, int offset){
 int findMagicIndex(int *arr, int low, int high){
     if(high<low) return -1;
     int mid = low+(high-low)/2;
-    if(arr[mid]==mid) return mid;
+    int midValue = arr[mid];
+    if(midValue==mid) return mid;
     // to understand this logic, go to CTCI
     // pageNo (pdf(359)/book(347))
-    if(arr[mid]>mid) return findMagicIndex(arr,low,min(arr[mid],mid-1));
-    if(arr[mid]<mid) return findMagicIndex(arr,max(arr[mid],mid+1),high);
-    return -1;
+    int left = findMagicIndex(arr,low,min(midValue,mid-1));
+    if (left>=0) return left;
+    int right =  findMagicIndex(arr,max(midValue,mid+1),high);
+    return right;
 }
 
 int findMagicIndex(int *arr, int arraySize) {

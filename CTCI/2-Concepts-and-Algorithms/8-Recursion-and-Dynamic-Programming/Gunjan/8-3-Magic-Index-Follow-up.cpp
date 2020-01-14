@@ -1,8 +1,13 @@
 #include<iostream>
+#include<stdlib.h>
+#include<time.h>
 using namespace std;
 
 void generateList(int *arr, int arraySize, int offset){
+    srand(time(0));
     for(int i=0,j=-offset;i<arraySize;i++,j+=2){
+        // randomly set previous value to "j" as per question
+        if(rand()%10==i) j-=2;
         arr[i] = j;
     }
 }
@@ -11,8 +16,10 @@ int findMagicIndex(int *arr, int low, int high){
     if(high<low) return -1;
     int mid = low+(high-low)/2;
     if(arr[mid]==mid) return mid;
-    if(arr[mid]>mid) return findMagicIndex(arr,low,mid-1);
-    if(arr[mid]<mid) return findMagicIndex(arr,mid+1,high);
+    // to understand this logic, go to CTCI
+    // pageNo (pdf(359)/book(347))
+    if(arr[mid]>mid) return findMagicIndex(arr,low,min(arr[mid],mid-1));
+    if(arr[mid]<mid) return findMagicIndex(arr,max(arr[mid],mid+1),high);
     return -1;
 }
 

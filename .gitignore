@@ -2,6 +2,5 @@
 *.o
 *.exe
 *.pyc
-.vscode/
 CTCI/obj/
 CTCI/dep/

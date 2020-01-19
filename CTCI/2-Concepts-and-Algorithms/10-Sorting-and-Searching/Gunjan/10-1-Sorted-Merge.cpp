@@ -23,29 +23,19 @@ vector<int> generateRandomList(int length){
 }
 
 void merge(vector<int> &sortedListA, vector<int> &sortedListB){
-    vector<int> sortedListACopy (sortedListA);
-    sortedListA.resize(sortedListACopy.size()+sortedListB.size());
-    int i,j,k;
-    i=j=k=0;
-    while(i<sortedListACopy.size() && j<sortedListB.size()){
-        if(sortedListACopy[i]<=sortedListB[j]){
-            sortedListA[k] = sortedListACopy[i];
-            i++;
+    int endIndexA = sortedListA.size()-1;
+    int endIndexB = sortedListB.size()-1;
+    sortedListA.resize(sortedListA.size()+sortedListB.size());
+    int endIndexNewA = sortedListA.size()-1;
+    while(endIndexB>=0){
+        if(sortedListB[endIndexB] < sortedListA[endIndexA]){
+            sortedListA[endIndexNewA] = sortedListA[endIndexA];
+            endIndexA--;
         } else {
-            sortedListA[k] = sortedListB[j];
-            j++;
+            sortedListA[endIndexNewA] = sortedListB[endIndexB];
+            endIndexB--;
         }
-        k++;
-    }
-    while(i<sortedListACopy.size()){
-        sortedListA[k] = sortedListACopy[i];
-        i++;
-        k++;
-    }
-    while(i<sortedListB.size()){
-        sortedListA[k] = sortedListB[j];
-        j++;
-        k++;
+        endIndexNewA--;
     }
 }
 

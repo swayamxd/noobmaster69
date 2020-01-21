@@ -78,7 +78,7 @@ Hints:
 EXAMPLE
 ```
 Stream(inorderofappearance):5, 1, 4, 4, 5, 9, 7, 13, 3
-getRankOfNumber(l) 0
+getRankOfNumber(1) 0
 getRankOfNumber(3) 1
 getRankOfNumber(4) 3
 ```

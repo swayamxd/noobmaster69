@@ -22,7 +22,8 @@ int multiply(int a, int b){
 }
 
 int divide(int a, int b){
-    if(abs(b)>abs(a)) return 0;
+    if(b==0) return INT16_MAX;
+    else if(abs(b)>abs(a)) return 0;
     else if(b==a) return 1;
     else if(-b==a || b==-a) return -1;
     int resultSign=1,result = 0;

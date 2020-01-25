@@ -162,10 +162,10 @@ Hints:
 EXAMPLE
 ```
 Input:
-a 2 1 a
-a 1 a 1
-1 1 a 1
-a 1 a 1
+0  2  1  0
+0  1  0  1
+1  1  0  1
+0  1  0  1
 Output: 2, 4, 1 (in any order)
 ```
 Hints:

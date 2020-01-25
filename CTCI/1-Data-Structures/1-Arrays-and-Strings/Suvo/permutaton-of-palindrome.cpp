@@ -9,7 +9,7 @@ bool isPermutationPalindrome(string str)
       if(str[i] != ' '){
         count[str[i]]++;
       }
-      
+
     int odd = 0;
     for (int i = 0; i < 128; i++)
     {

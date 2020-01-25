@@ -27,7 +27,7 @@ void generateRandomPlot(vector<vector<int>> &plot){
     }
 }
 
-int getSize(vector<vector<int>> &plot, vector<vector<int>> &visited, int row, int col){
+int getSize(vector<vector<int>> &plot, vector<vector<bool>> &visited, int row, int col){
     int size=1;
     visited[row][col] = true;
     // left
@@ -60,7 +60,7 @@ int getSize(vector<vector<int>> &plot, vector<vector<int>> &visited, int row, in
 vector<int> getSize(vector<vector<int>> &plot){
     int size;
     vector<int> pondSizes;
-    vector<vector<int>> visited(plot.size(),vector<int>(plot[0].size(),false));
+    vector<vector<bool>> visited(plot.size(),vector<bool>(plot[0].size(),false));
     for(int i=0;i<plot.size();i++){
         for(int j=0;j<plot[0].size();j++){
             if(plot[i][j]==0 && !visited[i][j]){

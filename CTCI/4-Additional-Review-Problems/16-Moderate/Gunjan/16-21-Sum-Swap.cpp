@@ -17,6 +17,7 @@ void generateRandomArray(vector<int> &array){
     }
 }
 
+// O(m+n) runtime, which is the best possible runtime that can be achieved
 pair<int,int> swapToEqualSum(vector<int> &firstArray, vector<int> &secondArray){
     int firstIndex=-1,secondIndex=-1;
     int sumFirst=0,sumSecond=0;

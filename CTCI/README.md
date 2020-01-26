@@ -37,6 +37,12 @@
     -10.8
 </details>
 
+<details>
+<summary>16-Moderate</summary>
+    -16.25
+    -16.26
+</details>
+
 ## Swayamdeepta :
     - NULL
 

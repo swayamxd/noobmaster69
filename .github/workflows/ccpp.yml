@@ -10,4 +10,4 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: make
-      run: cd CTCI;make
+      run: cd CTCI-2021-22;make

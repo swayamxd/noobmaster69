@@ -16,7 +16,7 @@ void display(Node* head){
 }
 
 Node* partition(Node* head, int n){
-    Node* curr=head,*toDelete,*temp;
+    Node* curr=head, *temp;
     while(curr->next){
         if(curr->next->data < n){
             temp = curr->next;

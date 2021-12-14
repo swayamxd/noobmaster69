@@ -44,7 +44,6 @@ class stack{
   }
 };
 
-
 class minStack: public stack{
   int min = INT32_MAX;
   stack *minValues;
